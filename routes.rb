@@ -155,8 +155,19 @@ get '/tags.json' do
   client.tag_recent_media(tags[0].name, {"count" => 1000}).to_json
 end
 
+def StateFromLatLon(lat, lon)
+   return "DE"
+end
+
 get '/photo_locations.json' do
-  [{"img" => "http://scontent-b.cdninstagram.com/hphotos-xpa1/t51.2885-15/924100_769271873143514_497356768_a.jpg", "state" => "DE"}, {"img" => "http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/10853007_1525507041058609_639556458_a.jpg", "state" => "CA"}].to_json
+  client = Instagram.client(:access_token => session[:access_token])
+  tags = client.tag_search('blacklivesmatter')
+  content_type :json
+  d = client.tag_recent_media(tags[0].name, {"count" => 1000})
+      .select { |n| !n.location.nil? }
+      .map { |n| {"loc" => StateFromLatLon(n.location.latitude, n.location.longitude), "img" => n.images.low_resolution.url} }
+  d.to_json
+  # [{"img" => "http://scontent-b.cdninstagram.com/hphotos-xpa1/t51.2885-15/924100_769271873143514_497356768_a.jpg", "state" => "DE"}, {"img" => "http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/10853007_1525507041058609_639556458_a.jpg", "state" => "CA"}].to_json
 end
 
 get '/' do
