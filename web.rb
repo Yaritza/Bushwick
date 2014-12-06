@@ -1,5 +1,7 @@
 require "sinatra"
 require "instagram"
+require "json"
+# require "
 
 enable :sessions
 
@@ -162,9 +164,14 @@ get "/limits" do
   html
 end
 
-
-
+get '/tags.json' do
+  client = Instagram.client(:access_token => session[:access_token])
+  tags = client.tag_search('blacklivesmatter')
+    content_type :json
+  client.tag_recent_media(tags[0].name, {"count" => 1000}).to_json
+end
 
 get '/' do
-  "Hello, world"
+  erb :index
 end
+
