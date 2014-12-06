@@ -1,0 +1,53 @@
+body {
+  background-color: lightgray;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+.main {
+  background-color: white;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px;
+  width: 75%;
+  float: left;
+}
+
+.pics-on-right {
+  width: 22%;
+  float: right;
+  background-color:black;
+  height: 200px;
+}
+
+.thirds {
+  overflow: auto;
+  width: 100%;
+  padding-left: 2.5%;
+  background-color: grey;
+}
+
+.third {
+  width: 31%;
+  margin:5px;
+  float: left;
+  background: white;
+  border-radius: 10px;
+  height: 100px;
+  padding: 10px;
+}
+
+#tooltip {
+  position: absolute;
+  background: white;
+  z-index: 999999;
+  padding: 5px;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #444;
+  display: none;
+}
