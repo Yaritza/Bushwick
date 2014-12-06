@@ -1,6 +1,9 @@
 
 
-❯ brew install ruby
-❯ gem install --user bundler
-❯ bundle install
-❯ bundle exec ruby web.rb
+* Instructions for running
+```bash
+brew install ruby
+gem install bundler
+bundle install
+bundle exec ruby web.rb
+```
